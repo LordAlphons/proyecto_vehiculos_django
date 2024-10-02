@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2 style="color: #212529;">Agregar Nuevo Vehículo</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-light" style="background-color: #212529; color: white;">Guardar Vehículo</button>
+  </form>
+</div>
+{% endblock %}
+
+<style>
+  .btn-custom {
+    background-color: #212529;
+    color: white;
+  }
+  .btn-custom:hover {
+    background-color: #343a40; /* Slightly darker on hover */
+  }
+</style>
+
+<button type="submit" class="btn btn-light btn-custom">Guardar Vehículo</button>

@@ -1,0 +1,39 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% include "navbar.html" %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<style>
+    .register-container {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 30px;
+        margin-top: 50px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    .btn-register {
+        width: 100%;
+    }
+</style>
+
+<!--Registro-->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 register-container">
+            <h2 class="register-title text-dark text-center mb-4">Registro</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ register_form|crispy }}
+                <button class="btn btn-dark btn-register mt-3" type="submit">Registrarse</button>
+            </form>
+            <p class="text-center mt-3">
+                ¿Ya tienes una cuenta? <a href="{% url 'login' %}" class="login-link text-dark">Inicia sesión aquí</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

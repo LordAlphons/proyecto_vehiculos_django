@@ -1,0 +1,59 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% include "navbar.html" %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<style>
+    body {
+        background-color: #e6f2ff;
+    }
+    .login-container {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin-top: 50px;
+    }
+    .login-title {
+        color: #212529; /* Color ajustado para coincidir con el texto del navbar */
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .btn-login {
+        background-color: #212529; /* Color ajustado para coincidir con el fondo del navbar */
+        color: #ffffff; /* Texto en blanco para contrastar con el fondo oscuro */
+        width: 100%;
+    }
+    .btn-login:hover {
+        background-color: #343a40; /* Un tono más oscuro al pasar el ratón */
+    }
+    .register-link {
+        color: #212529; /* Color ajustado para coincidir con el texto del navbar */
+    }
+    .register-link:hover {
+        color: #343a40;
+        text-decoration: underline;
+    }
+</style>
+
+<!-- Login -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 login-container">
+            <h2 class="login-title">Iniciar Sesión</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ login_form|crispy }}
+                <button class="btn btn-login mt-3" type="submit">Ingresar</button>
+            </form>
+            <p class="text-center mt-3">
+                ¿No tienes una cuenta? <a href="{% url 'registro' %}" class="register-link">Regístrate aquí</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

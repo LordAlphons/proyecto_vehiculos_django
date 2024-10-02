@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-light text-dark py-5 mb-5">
+    <div class="container">
+        <h1 class="display-4">Catálogo de Vehículos</h1>
+        <p class="lead">Revisa todos los modelos de automóviles.</p>
+    </div>
+</div>
+
+
+
+    {% if user.is_authenticated %}
+    <div class="bg-light p-4 rounded mb-5">
+        <h2 class="mb-3 text-dark">¡Bienvenido, {{ user.username }}!</h2>
+        <p class="text-dark">Aquí tienes algunas opciones adicionales:</p>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action text-dark"><i class="fas fa-user mr-2"></i>Mi Perfil</a>
+            <a href="{% url 'logout' %}" class="list-group-item list-group-item-action text-danger"><i class="fas fa-sign-out-alt mr-2"></i>Cerrar Sesión</a>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center mb-5">
+        <p class="lead text-dark">¿Aún no tienes una cuenta?
+            <a href="{% url 'registro' %}" class="btn btn-dark ml-2">Regístrate aquí</a>
+        </p>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
